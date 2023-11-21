@@ -6,7 +6,7 @@ public class Test {
     public static void main(String[] args) {
         try {
             // Creazione di un'istanza di Persona
-            Persona persona = new Persona("Rossi", "Marco", "RSSMRC95M16H224T", "29/02/1984");
+            Persona persona = new Persona("Rossi", "Marco", "RSSMRC95M16H224T", "29/02/1984", "marco.rossi@gmail.com");
 
             // Creazione di un'istanza di Prenotazione
             Prenotazione prenotazione = new Prenotazione(persona, "21/11/2023", "07:50:00");
@@ -16,7 +16,7 @@ public class Test {
             System.out.println("\nInformazioni Prenotazione: " + prenotazione.toString());
 
             // Verifica dell'omonimia con un'altra Persona
-            Persona altraPersona = new Persona("Rossi", "Maria", "RSSMRC95M16H224T", "20/09/2000");
+            Persona altraPersona = new Persona("Rossi", "Maria", "RSSMRC95M16H224T", "20/09/2000", "maria.rossi@gmail.com");
             if (persona.verificaOmonimia(altraPersona)) {
                 System.out.println("\nLe due persone sono omonime.");
             } else {

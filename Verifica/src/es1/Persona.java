@@ -1,5 +1,7 @@
 package es1;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -9,15 +11,18 @@ public class Persona {
     private String nome;
     private String codFisc;
     private String dataDiNascita;
+
+    private String email;
     private static int numeroIstanze;
 
     public Persona() {
         numeroIstanze++;
     }
 
-    public Persona(String cognome, String nome, String codFisc, String dataDiNascita) throws Exception{
+    public Persona(String cognome, String nome, String codFisc, String dataDiNascita, String email) throws Exception{
         controlloCodiceFiscale(codFisc);
         controlloData(dataDiNascita);
+        setEmail(email);
         this.cognome = controlloNominativi(cognome);
         this.nome = controlloNominativi(nome);
         this.codFisc = codFisc;
@@ -78,6 +83,23 @@ public class Persona {
 
         //Calcola la differenza di anni, mesi e giorni tra oggi e la data di nascita
         return Period.between(dataNascita, oggi).getYears();
+    }
+
+    public void setEmail(String email) throws Exception{
+        if(email == null){
+            throw new Exception("\nIl parametro passato è null.");
+        }
+        if(email.equals("")){
+            throw new Exception("\nIl parametro passato è vuoto.");
+        }
+
+        EmailValidator eV = EmailValidator.getInstance();
+
+        if(eV.isValid(email)){
+            this.email = email;
+        }else{
+            throw new Exception("\nla mail non è valida!");
+        }
     }
 
     public String toString() {
